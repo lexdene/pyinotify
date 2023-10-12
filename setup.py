@@ -102,16 +102,15 @@ if compile_ext_mod or should_compile_ext_mod():
 
 
 setup(
-    name='pyinotify',
-    version='0.9.6',
+    name='pyinotify-elephant-fork',
+    version='0.0.1',
     description='Linux filesystem events monitoring',
-    author='Sebastien Martini',
-    author_email='seb@dbzteam.org',
+    author='Elephant Liu',
+    author_email='lexdene@gmail.com',
     license='MIT License',
     platforms='Linux',
     classifiers=classif,
-    url='http://github.com/seb-m/pyinotify',
-    download_url='http://pypi.python.org/pypi/pyinotify',
+    url='https://github.com/lexdene/pyinotify',
     ext_modules=ext_mod,
     py_modules=['pyinotify'],
     package_dir=package_dir,
