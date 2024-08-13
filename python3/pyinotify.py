@@ -487,14 +487,14 @@ class _Event:
                 value = hex(getattr(self, attr))
             elif isinstance(value, str) and not value:
                 value = "''"
-            s += ' %s%s%s' % (output_format.field_name(attr),
-                              output_format.punctuation('='),
+            s += ' "%s"%s"%s",' % (output_format.field_name(attr),
+                              output_format.punctuation(':'),
                               output_format.field_value(value))
 
-        s = '%s%s%s %s' % (output_format.punctuation('<'),
+        s = '%s"%s":{%s}%s' % (output_format.punctuation('{'),
                            output_format.class_name(self.__class__.__name__),
-                           s,
-                           output_format.punctuation('>'))
+                           re.sub(',$','',s),
+                           output_format.punctuation('}'))
         return s
 
     def __str__(self):
@@ -1525,10 +1525,6 @@ class TornadoAsyncNotifier(Notifier):
         Notifier.stop(self)
 
     def handle_read(self, *args, **kwargs):
-        """
-        See comment in AsyncNotifier.
-
-        """
         self.read_events()
         self.process_events()
         if self.handle_read_callback is not None:
